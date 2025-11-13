@@ -27,7 +27,7 @@ def adicionar_gasto():
 
     with open("gastos.csv", "a", newline="") as file:
         writer = csv.writer(file)
-        writer.writerow([descricao, valor, data])
+        writer.writerow([data, valor, descricao])
 
     print("Gasto adicionado com sucesso!")
 
