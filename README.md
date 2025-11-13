@@ -1,1 +1,8 @@
-# ControleGastosPY
+🚀 FinanceTrack: Gerenciador de Gastos em CSVEste é um projeto simples em Python para gerenciamento de despesas pessoais. Ele utiliza o módulo csv para persistir os dados em um arquivo chamado gastos.csv e o módulo os para verificar a existência e o tamanho do arquivo.🌟 FuncionalidadesO programa oferece um menu interativo com as seguintes opções:Adicionar Gasto (1): Registra uma nova despesa com descrição, valor e data.Listar Gastos (2): Exibe todas as despesas registradas no arquivo CSV.Total Gasto (3): Calcula e exibe a soma total de todos os valores registrados.Sair (4): Encerra o programa.💻 Como Usar1. Pré-requisitosVocê precisa ter o Python instalado em sua máquina. Nenhuma biblioteca externa além das nativas (csv, os) é necessária.2. Executando o ProjetoSalve o código em um arquivo Python (ex: financetrack.py).Execute o arquivo no seu terminal:Bashpython financetrack.py
+3. Interagindo com o MenuO menu será exibido no console. Digite o número da opção desejada e pressione Enter.=== FinanceTrack ===
+1. Adicionar gasto
+2. Listar gastos
+3. Total gasto
+4. Sair
+Escolha:
+🛠️ Estrutura do CódigoO projeto é organizado em funções claras:FunçãoDescriçãoinicializar_arquivo()Garante que o arquivo gastos.csv exista e tenha o cabeçalho ["descricao", "valor", "data"].adicionar_gasto()Pede os dados do gasto, valida se o valor é numérico (aceita , ou .) e adiciona a linha ao CSV. Atenção: A ordem em que os dados são salvos no CSV está diferente da ordem do cabeçalho. (Detalhe na seção de Correção Sugerida).listar_gastos()Lê o CSV (pulando o cabeçalho) e exibe os gastos formatados.total_gastos()Lê o CSV (pulando o cabeçalho), soma a coluna do valor (tratando possíveis erros de conversão) e exibe o total.menu()Loop principal que exibe as opções e chama as funções correspondentes.
