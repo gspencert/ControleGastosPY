@@ -6,10 +6,23 @@ def inicializar_arquivo():
         with open("gastos.csv", "w", newline="") as file:
             writer = csv.writer(file)
             writer.writerow(["descricao", "valor", "data"])
+    else:
+        if os.path.getsize("gastos.csv") == 0:
+            with open("gastos.csv", "w", newline="") as file:
+                writer = csv.writer(file)
+                writer.writerow(["descricao", "valor", "data"])
 
 def adicionar_gasto():
     descricao = input("Descrição do gasto: ")
-    valor = input("Valor: ")
+    
+    while True:
+        valor = input("Valor: ").replace(",", ".")
+        try:
+            float(valor)
+            break
+        except ValueError:
+            print("Valor inválido! Digite um número.")
+
     data = input("Data: ")
 
     with open("gastos.csv", "a", newline="") as file:
@@ -21,20 +34,37 @@ def adicionar_gasto():
 def listar_gastos():
     with open("gastos.csv", "r") as file:
         reader = csv.reader(file)
-        next(reader)
+
+        try:
+            next(reader)
+        except StopIteration:
+            print("Nenhum gasto cadastrado.")
+            return
 
         print("\n--- LISTA DE GASTOS ---")
+        vazio = True
         for row in reader:
-            print(f"{row[0]} - R$ {row[1]}")
+            vazio = False
+            print(f"{row[0]} - R$ {row[1]} - {row[2]}")
+        if vazio:
+            print("Nenhum gasto cadastrado.")
 
 def total_gastos():
     total = 0
     with open("gastos.csv", "r") as file:
         reader = csv.reader(file)
-        next(reader)
+
+        try:
+            next(reader)
+        except StopIteration:
+            print("\nTotal gasto: R$ 0.00")
+            return
 
         for row in reader:
-            total += float(row[1])
+            try:
+                total += float(row[1])
+            except ValueError:
+                pass 
 
     print(f"\nTotal gasto: R$ {total:.2f}")
 
@@ -59,6 +89,6 @@ def menu():
         else:
             print("Opção inválida.")
 
+
 inicializar_arquivo()
 menu()
-
