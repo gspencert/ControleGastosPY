@@ -1,72 +1,4 @@
-import csv
-import os
-
-def inicializar_arquivo():
-    if not os.path.exists("gastos.csv"):
-        with open("gastos.csv", "w", newline="") as file:
-            writer = csv.writer(file)
-            writer.writerow(["descricao", "valor", "data"])
-    else:
-        if os.path.getsize("gastos.csv") == 0:
-            with open("gastos.csv", "w", newline="") as file:
-                writer = csv.writer(file)
-                writer.writerow(["descricao", "valor", "data"])
-
-def adicionar_gasto():
-    descricao = input("Descrição do gasto: ")
-    
-    while True:
-        valor = input("Valor: ").replace(",", ".")
-        try:
-            float(valor)
-            break
-        except ValueError:
-            print("Valor inválido! Digite um número.")
-
-    data = input("Data: ")
-
-    with open("gastos.csv", "a", newline="") as file:
-        writer = csv.writer(file)
-        writer.writerow([data, valor, descricao])
-
-    print("Gasto adicionado com sucesso!")
-
-def listar_gastos():
-    with open("gastos.csv", "r") as file:
-        reader = csv.reader(file)
-
-        try:
-            next(reader)
-        except StopIteration:
-            print("Nenhum gasto cadastrado.")
-            return
-
-        print("\n--- LISTA DE GASTOS ---")
-        vazio = True
-        for row in reader:
-            vazio = False
-            print(f"{row[0]} - R$ {row[1]} - {row[2]}")
-        if vazio:
-            print("Nenhum gasto cadastrado.")
-
-def total_gastos():
-    total = 0
-    with open("gastos.csv", "r") as file:
-        reader = csv.reader(file)
-
-        try:
-            next(reader)
-        except StopIteration:
-            print("\nTotal gasto: R$ 0.00")
-            return
-
-        for row in reader:
-            try:
-                total += float(row[1])
-            except ValueError:
-                pass 
-
-    print(f"\nTotal gasto: R$ {total:.2f}")
+from finance_tracker import inicializar_arquivo, adicionar_gasto, listar_gastos, total_gastos
 
 def menu():
     while True:
@@ -75,7 +7,7 @@ def menu():
         print("2. Listar gastos")
         print("3. Total gasto")
         print("4. Sair")
-        opcao = input("Escolha: ")
+        opcao = input("Escolha a opção: ")
 
         if opcao == "1":
             adicionar_gasto()
@@ -84,11 +16,11 @@ def menu():
         elif opcao == "3":
             total_gastos()
         elif opcao == "4":
-            print("Encerrando...")
+            print("Encerrando o FinanceTrack. Até logo!")
             break
         else:
-            print("Opção inválida.")
+            print("Opção inválida. Digite um número de 1 a 4.")
 
-
-inicializar_arquivo()
-menu()
+if __name__ == "__main__":
+    inicializar_arquivo()
+    menu()
