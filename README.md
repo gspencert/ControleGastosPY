@@ -31,12 +31,12 @@ Certifique-se de ter o **Python** instalado em sua máquina.
 
 ### Execução
 
-1.  Clone este repositório ou baixe o arquivo `financetrack.py`.
+1.  Clone este repositório ou baixe o arquivo `main.py` e `finance_tracker.py`.
 2.  Abra o terminal na pasta do projeto.
 3.  Execute o script Python:
 
     ```bash
-    python financetrack.py
+    python main.py
     ```
 
 4.  O menu interativo será exibido, e você poderá começar a gerenciar seus gastos.
