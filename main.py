@@ -61,3 +61,4 @@ def menu():
 
 inicializar_arquivo()
 menu()
+
