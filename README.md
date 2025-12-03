@@ -1,4 +1,4 @@
-# 🐙 FinanceTrack: Gerenciador de Gastos Pessoais
+# 🐙 FinanceTracker: Gerenciador de Gastos Pessoais
 
 Este repositório contém um simples projeto em **Python** para gerenciar despesas pessoais, salvando os dados em um arquivo CSV (`gastos.csv`).
 
